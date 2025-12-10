@@ -1,19 +1,16 @@
 HR Workflow Designer (React + React Flow)
 
-This project is a mini HR Workflow Builder that lets an HR admin visually create and test workflow processes like onboarding, approvals, automated actions, and more.
-It was built as part of a time-boxed (4–6 hour) assignment, so the focus is on clean architecture, working functionality, and extendability over perfect UI polish.
+This project is a lightweight but fully functional HR Workflow Builder that lets HR teams visually design and test processes such as onboarding flows, approval chains, and automated actions.
+It was built under a tight 4–6 hour window, which meant focusing on clean structure, practical features, and future scalability rather than UI perfection.
 
-🌟 What this project does
+🌟 What the App Offers
+🎨 Visual Workflow Canvas
 
-The app provides a simple but powerful workflow-building experience:
+Drag-and-drop interface for building workflows
 
-🎨 Visual Canvas
+Connect nodes to define the flow
 
-Drag-and-drop nodes from a sidebar
-
-Arrange and connect steps visually
-
-Supports 5 workflow node types:
+Supports five essential step types:
 
 Start
 
@@ -25,137 +22,139 @@ Automated Step
 
 End
 
-📝 Node Editing Panel
+📝 Configurable Node Editor
 
-Click any node to configure it.
-Every node type has its own form:
+Clicking a node opens its configuration panel.
+Each step type exposes only the fields that matter:
 
-Start Node: title + metadata
+Start: title, metadata
 
-Task Node: title, description, assignee, due date
+Task: title, description, assignee, due date
 
-Approval Node: approver role, auto-approve threshold
+Approval: approver role, auto-approval threshold
 
-Automated Node: select an action → dynamic parameter inputs
+Automated Step: pick an action → dynamic input fields
 
-End Node: end message + summary flag
+End: summary toggle, closing message
 
-⚙️ Simulation Panel
+The goal was to keep everything clear and intuitive.
 
-You can test the workflow by:
+⚙️ Workflow Simulation
 
-Validating the structure
+The built-in simulator lets you:
 
-Serializing the graph into JSON
+Validate workflow structure
 
-Sending it to a mock /simulate API
+Convert the graph into clean JSON
 
-Viewing a step-by-step execution log
+Send it to a mock /simulate API
 
-This gives a feel for how the workflow would behave in a real system.
+See a step-by-step execution trace
 
-🧩 Architecture Overview
+This gives a realistic sense of how the workflow would run in production.
 
-The project is intentionally structured to be modular, scalable, and easy to maintain.
+🧩 Project Architecture
+
+The codebase is split cleanly for readability and long-term maintainability:
 
 src/
-  api/              # Fake API calls (automations + workflow simulation)
+  api/              # Mock automation + simulation endpoints
   components/
-    canvas/         # React Flow canvas + node components
+    canvas/         # React Flow canvas + custom nodes
     forms/          # Node configuration forms
-    layout/         # Layout + sidebar
-    panels/         # Config panel + simulation panel
+    layout/         # App layout + sidebar
+    panels/         # Config + simulation panels
   hooks/            # Zustand workflow store
-  types/            # Strong TypeScript interfaces for all nodes
-  utils/            # Validation + workflow serialization helpers
+  types/            # Strong TypeScript types for all nodes
+  utils/            # Validation + serialization logic
   App.tsx
   main.tsx
 
 
-React Flow handles the visual graph, while Zustand manages the global workflow state.
-All node logic is kept separate from canvas rendering for clarity and scalability.
+React Flow manages graph interactions
 
-🔌 Mock API Endpoints
+Zustand keeps workflow state predictable and centralized
 
-The app uses a tiny local mock API layer:
+Node rendering and node logic are intentionally separated for clarity and extension
 
+🔌 Mock APIs
 GET /automations
 
-Returns available automated actions (e.g., “Send Email”, “Generate Document”).
-The parameters in the response dynamically generate form inputs.
+Returns available automated actions and their input fields.
 
 POST /simulate
 
-Receives the serialized workflow and returns a simple execution log.
+Receives the serialized workflow and returns a mock run log.
 
-This keeps the app lightweight while still demonstrating data flow and testing behavior.
+This provides enough backend behavior to simulate real-world scenarios without adding unnecessary weight.
 
-🚀 Getting Started
-Install dependencies
+🚀 Running the App
+
+Install:
+
 npm install
 
-Start the dev server
+
+Start:
+
 npm run dev
 
 
-Then open:
+Open:
 
 http://localhost:5173
 
 
-You’ll see the full workflow builder with canvas, sidebar, and configuration panels.
+You’ll see the canvas, sidebar, config panel, and simulation tools ready to use.
 
-✔ What’s Completed (within the assignment timebox)
+✔ Completed Within the Timebox
 
-Visual drag-and-drop workflow canvas
+Drag-and-drop workflow building
 
 Custom React Flow node components
 
-Full configuration forms for all node types
+Individual configuration forms for all node types
 
-Dynamic automated-node parameters
+Dynamic fields for automated steps
 
-Centralized state management via Zustand
+Zustand-based centralized state management
 
-Workflow serialization + simulation
+Workflow validation + serialization
 
-Validation: missing start/end, orphan nodes, cycle detection
+Simulation with step-by-step logs
 
-Modular, production-friendly project structure
+Detection for cycles, orphans, missing start/end nodes
 
-Everything needed for the assignment is implemented.
+Clean, extendable architecture
 
-➕ What I Would Add With More Time
+Everything required for the assignment is built and working.
 
-This section is useful for interviewers:
+➕ What I’d Add With More Time
 
-Undo / Redo
+Undo/Redo support
 
-Import & export workflows as JSON
+Workflow import/export (JSON)
 
-Auto-layout for cleaner workflows
+Auto-layout for cleaner graph positioning
 
-Visual error indicators on nodes
+Error indicators directly on nodes
 
-A small library of pre-built workflow templates
+Pre-built workflow templates
 
-Persisting workflows to a backend
+Backend persistence and versioning
 
-Richer UI with animations and drag handles
+More polished UI and micro-interactions
 
 💡 Final Thoughts
 
-This project intentionally balances speed and structure.
-The goal wasn’t to build a full-featured enterprise workflow engine, but to show:
+This project is meant to demonstrate practical engineering under time pressure:
 
-Strong understanding of React Flow
+Strong grasp of React Flow
 
-Clean component & state architecture
+Clean component + state design
 
-Dynamic configuration-driven forms
+Realistic workflow modeling
 
-Practical workflow reasoning
+Ability to deliver complete, scalable features quickly
 
-Ability to build something scalable under time constraints
-
-If you're reviewing this project, thank you for taking the time to go through it!
+If you're reviewing the project, I appreciate you taking the time to go through it.
